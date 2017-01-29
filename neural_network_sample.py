@@ -22,6 +22,10 @@ class NeuralNetworkSample:
     def identity_function(x):
         return x
 
+    # ソフトマックス関数
+    def softmax(x):
+        return np.exp(x) / np.sum(np.exp(x))
+
     def forward(self):
         self.z1 = NeuralNetworkSample.sigmoid(np.dot(self.w1, self.x) + self.b1)
         self.z2 = NeuralNetworkSample.sigmoid(np.dot(self.w2, self.z1) + self.b2)
@@ -30,3 +34,6 @@ class NeuralNetworkSample:
 
 n = NeuralNetworkSample(1.0, 2.0)
 print(n.forward())
+print('softmax')
+a = np.arange(0, 1, 0.01)
+print(NeuralNetworkSample.softmax(a))
