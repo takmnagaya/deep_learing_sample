@@ -24,7 +24,8 @@ class NeuralNetworkSample:
 
     # ソフトマックス関数
     def softmax(x):
-        return np.exp(x) / np.sum(np.exp(x))
+        m = np.max(x)
+        return np.exp(x - m) / np.sum(np.exp(x - m))
 
     def forward(self):
         self.z1 = NeuralNetworkSample.sigmoid(np.dot(self.w1, self.x) + self.b1)
