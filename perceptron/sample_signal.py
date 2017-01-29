@@ -27,6 +27,11 @@ class Perceptron:
         perceptron = Perceptron([1.0, 1.0, 0.0])
         return perceptron.active_function(x)
 
+    # 一方の入力のみが1の時のみ1を出力する
+    def XOR(x):
+        l = [Perceptron.OR(x), Perceptron.NAND(x), 1.0]
+        return Perceptron.AND(l)
+
 a = [[0.0, 0.0, 1.0], [1.0, 0.0, 1.0], [0.0, 1.0, 1.0], [1.0, 1.0, 1.0]]
 for x in a:
     print(x[:2])
@@ -36,3 +41,5 @@ for x in a:
     print(Perceptron.NAND(x))
     print('OR')
     print(Perceptron.OR(x))
+    print('XOR')
+    print(Perceptron.XOR(x))
