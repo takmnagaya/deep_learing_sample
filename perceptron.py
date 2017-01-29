@@ -1,4 +1,6 @@
 import numpy as np
+import matplotlib.pylab as plt
+
 class Perceptron:
     def __init__(self, w):
         # w is List for weight
@@ -7,10 +9,20 @@ class Perceptron:
     # 活性化関数
     def active_function(self, x):
         tmp_y = sum(self.w * np.array(x))
-        if tmp_y > 0:
-            return 1
-        else:
-            return 0
+        return Perceptron.step_function(x)
+
+    # ステップ関数
+    def step_function(x):
+        y = x > 0
+        return y.astype(np.int)
+
+    # ステップ関数描画
+    def print_step_function():
+        x = np.arange(-1.0, 1.0, 0.1)
+        y = Perceptron.step_function(x)
+        plt.plot(x, y)
+        plt.ylim(-0.1, 1.1) # y軸の表示範囲を指定
+        plt.show()
 
     # 適切にweight, biusを設定すればANDゲートになる
     def AND(x):
@@ -43,3 +55,5 @@ for x in a:
     print(Perceptron.OR(x))
     print('XOR')
     print(Perceptron.XOR(x))
+
+Perceptron.print_step_function()
