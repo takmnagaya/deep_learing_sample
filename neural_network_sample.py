@@ -14,13 +14,18 @@ class NeuralNetworkSample:
         self.w3 = np.array([[1.0, -3.0], [-1.0, 2.0]])
         self.b3 = np.array([0.1, 0.8])
 
+    # sigmoid関数
     def sigmoid(x):
         return 1 / (1 + np.exp(-x))
+
+    # 恒等関数
+    def identity_function(x):
+        return x
 
     def forward(self):
         self.z1 = NeuralNetworkSample.sigmoid(np.dot(self.w1, self.x) + self.b1)
         self.z2 = NeuralNetworkSample.sigmoid(np.dot(self.w2, self.z1) + self.b2)
-        self.y = NeuralNetworkSample.sigmoid(np.dot(self.w3, self.z2) + self.b3)
+        self.y = NeuralNetworkSample.identity_function(np.dot(self.w3, self.z2) + self.b3)
         return self.y
 
 n = NeuralNetworkSample(1.0, 2.0)
